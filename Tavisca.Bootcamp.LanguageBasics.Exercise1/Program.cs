@@ -30,84 +30,56 @@ namespace Tavisca.Bootcamp.LanguageBasics.Exercise1
         public static int FindDigit(string equation)
         {
             // Add your code here.
-            var indexofstar = equation.IndexOf('*');
-            var indexofequal = equation.IndexOf('=');
-            var A = "";
-            var B = "";
-            var C = "";
-            for (var i = 0; i < equation.Length; i++)
+            //throw new NotImplementedException();
+            string[] digits = equation.Split(new char[] { '*', '=' });
+            if(digits[0].Contains('?'))
             {
-                if (i < indexofstar)
-                    A += equation[i];
-                if (i > indexofstar && i < indexofequal)
-                    B += equation[i];
-                if (i > indexofequal)
-                    C += equation[i];
-            }
-            try
-            {
+                int b = int.Parse(digits[1]);
+                int c = int.Parse(digits[2]);
 
-                var A1 = Int32.Parse(A);
-
-            }
-            catch (FormatException e1)
-            {
-
-                var C1 = Int32.Parse(C);
-                var B1 = Int32.Parse(B);
-                if (C1 % B1 == 0)
-                {
-                    var result = C1 / B1;
-                    var r1 = result.ToString();
-                    var indexofquestionmark = A.IndexOf('?');
-                    if (r1.Length == A.Length)
-                        return (int)char.GetNumericValue(r1[indexofquestionmark]);
-                    else
-                        return -1;
-                }
+                if (c % b != 0)
+                    return -1;
+                int a = c / b;
+                string x = a.ToString();
+                string A = digits[0];
+                var indexofquestionmark = A.IndexOf('?');
+                if (x.Length == A.Length)
+                    return (int)char.GetNumericValue(x[indexofquestionmark]);
+                else
+                    return -1;
 
             }
-            try
+            if(digits[1].Contains('?'))
             {
-                // statements causing exception
-                var B1 = Int32.Parse(B);
-
-            }
-            catch (FormatException e1)
-            {
-                var C1 = Int32.Parse(C);
-                var A1 = Int32.Parse(A);
-                if (C1 % A1 == 0)
-                {
-                    var result = C1 / A1;
-                    var r1 = result.ToString();
-                    var indexofquestionmark = B.IndexOf('?');
-                    if (r1.Length == B.Length)
-                        return (int)char.GetNumericValue(r1[indexofquestionmark]);
-                    else
-                        return -1;
-                }
-            }
-            try
-            {
-                // statements causing exception
-                var C1 = Int32.Parse(C);
-
-            }
-            catch (FormatException e1)
-            {
-                var A1 = Int32.Parse(A);
-                var B1 = Int32.Parse(B);
-                var result = A1 * B1;
-                var r1 = result.ToString();
-                var indexofquestionmark = C.IndexOf('?');
-                if (r1.Length == C.Length)
-                    return (int)char.GetNumericValue(r1[indexofquestionmark]);
+                int a = int.Parse(digits[0]);
+                int c = int.Parse(digits[2]);
+                if (c % a != 0)
+                    return -1;
+                int b = c / a;
+                string x = b.ToString();
+                string B = digits[1];
+                var indexofquestionmark = B.IndexOf('?');
+                if (x.Length == B.Length)
+                    return (int)char.GetNumericValue(x[indexofquestionmark]);
                 else
                     return -1;
             }
+            if(digits[2].Contains('?'))
+            {
+                int a = int.Parse(digits[0]);
+                int b = int.Parse(digits[1]);
+                int c = a * b;
+                string x = c.ToString();
+                string C = digits[2];
+                var indexofquestionmark = C.IndexOf('?');
+                if (x.Length == C.Length)
+                    return (int)char.GetNumericValue(x[indexofquestionmark]);
+                else
+                    return -1;
+            }
+            return 1;
 
-            throw new NotImplementedException();
         }
+        
     }
 }
