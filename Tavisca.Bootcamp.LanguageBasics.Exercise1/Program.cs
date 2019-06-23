@@ -16,15 +16,10 @@ namespace Tavisca.Bootcamp.LanguageBasics.Exercise1
 
         private static void Test(string args, int expected)
         {
-            try
-            {
-                var result = FindDigit(args).Equals(expected) ? "PASS" : "FAIL";
-                Console.WriteLine($"{args} : {result}");
-            }
-            catch (Exception e)
-            {
-
-            }
+        
+            var result = FindDigit(args).Equals(expected) ? "PASS" : "FAIL";
+            Console.WriteLine($"{args} : {result}");
+      
         }
 
         public static int FindDigit(string equation)
